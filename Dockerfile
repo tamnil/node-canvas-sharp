@@ -2,7 +2,7 @@
 FROM node:8
 MAINTAINER Tamnil Saito Junior (tamnil@gmail.com)
 
-RUN apt update && apt upgrade -y
+RUN apt update  && apt upgrade -y
 RUN apt install sudo zsh vim tmux git -y
 
 # Required for node-canvas
