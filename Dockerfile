@@ -16,7 +16,8 @@ RUN su root
 # USER root
 # WORKDIR /root/
 
-RUN sudo npm install -g --unsafe-perm sharp canvas
+RUN sudo npm install -g --unsafe-perm sharp 
+RUN sudo npm install -g --build-from-source --unsafe-perm canvas
 
 RUN sudo npm install -g mocha grunt-cli pm2 jest nodemon
 
