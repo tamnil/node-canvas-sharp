@@ -1,0 +1,19 @@
+{
+  "name": "node8-canvas-sharp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamnil/node8-canvas-sharp.git"
+  },
+  "author": "Tamnil Saito Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tamnil/node8-canvas-sharp/issues"
+  },
+  "homepage": "https://github.com/tamnil/node8-canvas-sharp#readme"
+}
