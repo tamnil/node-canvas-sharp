@@ -18,7 +18,7 @@ RUN su root
 
 RUN sudo npm install -g --unsafe-perm sharp canvas
 
-RUN sudo npm install -g mocha grunt-cli
+RUN sudo npm install -g mocha grunt-cli pm2 jest nodemon
 
 ## temporary mongo install
 
@@ -29,7 +29,8 @@ RUN service mongodb start
 
 
 RUN useradd -ms /bin/bash newuser
-RUN usermod -a -G sudo www-data
+RUN usermod -a -G sudo newuser
+RUN usermod -a -G node newuser
 RUN mkdir /var/www/app -p
 
 
@@ -38,7 +39,11 @@ WORKDIR /var/www/app
 
 
 
-COPY . /var/www/teste
+COPY ./src /var/www/app
+
+RUN cd /var/www/app
+
+RUN nodemon /var/www/app
 
 
 
