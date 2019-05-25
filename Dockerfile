@@ -23,10 +23,10 @@ RUN sudo npm install -g mocha grunt-cli pm2 jest nodemon
 
 ## temporary mongo install
 
-RUN apt install mongodb -y
+# RUN apt install mongodb -y
 
 
-RUN sudo service mongodb start
+# RUN sudo service mongodb start
 
 
 RUN useradd -ms /bin/bash newuser
