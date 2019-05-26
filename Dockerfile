@@ -44,7 +44,7 @@ COPY ./src /var/www/app
 
 RUN cd /var/www/app
 
-RUN nodemon /var/www/app
+CMD nodemon /var/www/app
 
 
 
