@@ -40,16 +40,18 @@ RUN sudo npm install -g --build-from-source --unsafe-perm canvas
 
 RUN sudo npm install -g mocha grunt-cli pm2 jest nodemon
 
-RUN useradd -ms /bin/bash newuser
-RUN usermod -a -G sudo newuser
-RUN usermod -a -G www-data newuser
+# RUN useradd -ms /bin/bash newuser
+# RUN usermod -a -G sudo newuser
+# RUN usermod -a -G www-data newuser
 RUN mkdir /var/www/app -p
 
-USER newuser
+# USER newuser
 WORKDIR /var/www/app
 
 COPY ./src /var/www/app
 
 RUN cd /var/www/app
+
+USER 1000:1000
 
 CMD nodemon /var/www/app
