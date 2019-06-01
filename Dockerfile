@@ -5,7 +5,8 @@ MAINTAINER Tamnil Saito Junior (tamnil@gmail.com)
 
 RUN apt-get update && apt-get install -y \
         curl \
-        git
+        git \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
         && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
@@ -29,7 +30,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libvips-dev \
     build-essential \
-    g++
+    g++ \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN su root
 
@@ -40,7 +42,7 @@ RUN sudo npm install -g mocha grunt-cli pm2 jest nodemon
 
 RUN useradd -ms /bin/bash newuser
 RUN usermod -a -G sudo newuser
-RUN usermod -a -G node newuser
+RUN usermod -a -G www-data newuser
 RUN mkdir /var/www/app -p
 
 USER newuser
