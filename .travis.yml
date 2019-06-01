@@ -1,10 +1,12 @@
 
 sudo: required
+dist: bionic
+python: '3.6'
 services:
   - docker
 env:
   global:
-    - IMAGE_NAME=tamnil;node-canvas-sharp
+    - IMAGE_NAME=tamnil/node-canvas-sharp
     # - REGISTRY_USER=myuser
     # REGISTRY_PASS=...
     # - secret: "<something long>"
