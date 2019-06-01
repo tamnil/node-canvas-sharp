@@ -1,50 +1,53 @@
 # get node from oficial image - debian 9
-FROM node:8
+# FROM node:8
+FROM ubuntu:bionic
 MAINTAINER Tamnil Saito Junior (tamnil@gmail.com)
 
-RUN apt update  && apt upgrade -y
-RUN apt install sudo zsh vim tmux git -y
+RUN apt-get update && apt-get install -y \
+        curl \
+        git
 
-# Required for node-canvas
-RUN apt install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+        && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-# Required for sharp
-RUN apt install libvips-dev -y
+
+# RUN apt update  && apt upgrade -y && apt install -y  \
+        # Required for node-canvas
+    # build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev \
+    # Required for sharp
+
+RUN apt-get update && apt-get install -y \
+    nodejs \
+    yarn \
+    libcairo2-dev \
+    sudo \
+    libjpeg-dev \
+    libpango1.0-dev \
+    libgif-dev \
+    libpng-dev \
+    libvips-dev \
+    build-essential \
+    g++
 
 RUN su root
-
-# USER root
-# WORKDIR /root/
 
 RUN sudo npm install -g --unsafe-perm sharp 
 RUN sudo npm install -g --build-from-source --unsafe-perm canvas
 
 RUN sudo npm install -g mocha grunt-cli pm2 jest nodemon
 
-## temporary mongo install
-
-# RUN apt install mongodb -y
-
-
-# RUN sudo service mongodb start
-
-
 RUN useradd -ms /bin/bash newuser
 RUN usermod -a -G sudo newuser
 RUN usermod -a -G node newuser
 RUN mkdir /var/www/app -p
 
-
-user newuser
+USER newuser
 WORKDIR /var/www/app
-
-
 
 COPY ./src /var/www/app
 
 RUN cd /var/www/app
 
 CMD nodemon /var/www/app
-
-
-
