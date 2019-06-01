@@ -1,0 +1,16 @@
+
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - IMAGE_NAME=tamnil;node-canvas-sharp
+    # - REGISTRY_USER=myuser
+    # REGISTRY_PASS=...
+    # - secret: "<something long>"
+
+script:
+    - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
+
+after_script:
+    - docker images
