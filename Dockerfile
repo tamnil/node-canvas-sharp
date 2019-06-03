@@ -52,6 +52,6 @@ COPY ./src /var/www/app
 
 RUN cd /var/www/app
 
-USER 1000:1000
+# USER 1000:1000
 
 CMD nodemon /var/www/app
